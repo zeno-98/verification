@@ -13,7 +13,7 @@ public abstract class Experiment2 extends Experiment {
     public Map<String, Boolean> getSyncSendMap() {
         Map<String, Boolean> syncSendMap = new HashMap<>();
         syncSendMap.put("runnable1_start", true);
-        syncSendMap.put("runnable2_start", true);
+        syncSendMap.put("task_start", true);
         return syncSendMap;
     }
 
@@ -21,7 +21,7 @@ public abstract class Experiment2 extends Experiment {
     public Set<String> getResetSigma() {
         Set<String> set = new HashSet<>();
         set.add("runnable1_start");
-        set.add("runnable2_start");
+        set.add("task_start");
         return set;
     }
 
@@ -32,20 +32,26 @@ public abstract class Experiment2 extends Experiment {
         list.add(AutosarEx2Util.buildRunnable2());
         list.add(AutosarEx2Util.buildRunnable3());
         list.add(AutosarEx2Util.buildRunnable4());
+        list.add(AutosarEx2Util.buildRunnable5());
+        list.add(AutosarEx2Util.buildRunnable6());
         list.add(AutosarEx2Util.buildBuffer1());
         list.add(AutosarEx2Util.buildBuffer2());
-        list.add(AutosarEx2Util.buildSchedule2());
+        list.add(AutosarEx2Util.buildBuffer3());
+        list.add(AutosarEx2Util.buildBuffer4());
+        list.add(AutosarEx2Util.buildBuffer5());
+        list.add(AutosarEx2Util.buildRTE());
+        list.add(AutosarEx2Util.buildTask());
         return list;
     }
 
     @Override
     public List<Template> getM2() {
-        return Collections.singletonList(AutosarEx2Util.buildSchedule1());
+        return Collections.singletonList(AutosarEx2Util.buildSchedule());
     }
 
     @Override
     public String getNtaPath() {
-        return ".\\src\\main\\resources\\verification\\autosar_ex2-source.xml";
+        return ".\\src\\main\\resources\\verification\\autosar_ex3-source.xml";
     }
 
     @Override
@@ -56,14 +62,14 @@ public abstract class Experiment2 extends Experiment {
     @Override
     public List<SequenceChecker> getSequenceChecker() {
         SequenceChecker plugin = new SequenceChecker(false);
+        String s0 = "[startWith]:(runnable1_start,task_start)";
         String s1 = "[startWith]:(runnable1_start,runnable1_start)";
-        String s2 = "[startWith]:(runnable1_start,runnable1_start,runnable2_start)";
-        String s3 = "[startWith]:(runnable1_start,runnable1_start,runnable1_start,runnable2_start)";
-        String s4 = "[startWith]:(runnable1_start,runnable2_start)";
+        String s2 = "[startWith]:(runnable1_start,runnable1_start,task_start)";
+        String s3 = "[startWith]:(runnable1_start,runnable1_start,runnable1_start,task_start)";
+        plugin.add(s0);
         plugin.add(s1);
         plugin.add(s2);
         plugin.add(s3);
-        plugin.add(s4);
         return Collections.singletonList(plugin);
     }
 }

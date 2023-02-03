@@ -1,11 +1,13 @@
-package verification.experiment.autosar2;
+package verification.experiment.autosar1.mutileM1;
 
+import verification.experiment.autosar1.AutosarEx1Util;
+import verification.experiment.autosar1.Experiment1;
 import verification.plugins.SequenceChecker;
 import verification.uppaal.model.Template;
 
 import java.util.*;
 
-public class Experiment2_6 extends Experiment2 {
+public class Experiment1_6 extends Experiment1 {
 
     @Override
     public String getStatement() {
@@ -45,18 +47,18 @@ public class Experiment2_6 extends Experiment2 {
     @Override
     public List<Template> getM1() {
         List<Template> list = new ArrayList<>();
-        list.add(AutosarEx2Util.buildRunnable1());
-        list.add(AutosarEx2Util.buildRunnable2());
-        list.add(AutosarEx2Util.buildRunnable3());
-        list.add(AutosarEx2Util.buildRunnable4());
-        list.add(AutosarEx2Util.buildBuffer1());
-        list.add(AutosarEx2Util.buildBuffer2());
-        list.add(AutosarEx2Util.buildSchedule1());
+        list.add(AutosarEx1Util.buildRunnable1());
+        list.add(AutosarEx1Util.buildRunnable2());
+        list.add(AutosarEx1Util.buildRunnable3());
+        list.add(AutosarEx1Util.buildRunnable4());
+        list.add(AutosarEx1Util.buildBuffer1());
+        list.add(AutosarEx1Util.buildBuffer2());
+        list.add(AutosarEx1Util.buildSchedule1());
         return list;
     }
 
     @Override
     public List<Template> getM2() {
-        return Collections.singletonList(AutosarEx2Util.buildSchedule2());
+        return Collections.singletonList(AutosarEx1Util.buildSchedule2());
     }
 }

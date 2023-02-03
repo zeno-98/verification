@@ -1,57 +1,51 @@
-package verification.experiment.autosar2.mutileM1;
+package verification.experiment.autosar1.singleM1;
 
 import verification.experiment.Experiment;
-import verification.experiment.autosar2.AutosarEx2Util;
+import verification.experiment.autosar1.AutosarEx1Util;
 import verification.plugins.SequenceChecker;
 import verification.uppaal.model.Declaration;
 import verification.uppaal.model.Template;
 
 import java.util.*;
 
-public class MutileExperiment_2_6 extends Experiment {
-
+public class Experiment1_single_4 extends Experiment {
     @Override
     public String getStatement() {
-        return "A[] not (runnable1.s2 and runnable2.s2)";
+        return "A[] buffer2.count <= buffer2.len";
     }
 
     @Override
     public Map<String, Boolean> getSyncSendMap() {
         Map<String, Boolean> syncSendMap = new HashMap<>();
-        syncSendMap.put("runnable1_start", true);
-        syncSendMap.put("runnable2_start", true);
-        syncSendMap.put("write1", false);
-        syncSendMap.put("read1", false);
+        syncSendMap.put("read2", true);
+        syncSendMap.put("write2", true);
         return syncSendMap;
     }
 
     @Override
     public Set<String> getResetSigma() {
         Set<String> set = new HashSet<>();
-        set.add("runnable1_start");
-        set.add("runnable2_start");
+        set.add("read2");
+        set.add("write2");
         return set;
     }
 
     @Override
     public List<Template> getM1() {
-        List<Template> list = new ArrayList<>();
-        list.add(AutosarEx2Util.buildRunnable1());
-        list.add(AutosarEx2Util.buildRunnable2());
-        return list;
+        return Collections.singletonList(AutosarEx1Util.buildBuffer2());
     }
 
     @Override
     public List<Template> getM2() {
         List<Template> list = new ArrayList<>();
-//        list.add(AutosarEx2Util.buildRunnable1());
-//        list.add(AutosarEx2Util.buildRunnable2());
-        list.add(AutosarEx2Util.buildRunnable3());
-        list.add(AutosarEx2Util.buildRunnable4());
-        list.add(AutosarEx2Util.buildBuffer1());
-        list.add(AutosarEx2Util.buildBuffer2());
-        list.add(AutosarEx2Util.buildSchedule2());
-        list.add(AutosarEx2Util.buildSchedule1());
+        list.add(AutosarEx1Util.buildRunnable1());
+        list.add(AutosarEx1Util.buildRunnable2());
+        list.add(AutosarEx1Util.buildRunnable3());
+        list.add(AutosarEx1Util.buildRunnable4());
+        list.add(AutosarEx1Util.buildBuffer1());
+//        list.add(AutosarEx2Util.buildBuffer2());
+        list.add(AutosarEx1Util.buildSchedule2());
+        list.add(AutosarEx1Util.buildSchedule1());
         return list;
     }
 

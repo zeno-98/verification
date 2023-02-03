@@ -1,1 +1,1 @@
-A[] buffer1.count >= 0
+A[] not assume.assumesink
