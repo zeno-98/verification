@@ -1,0 +1,1 @@
+A[] buffer1.count >= 0
